@@ -1,0 +1,74 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Patient routes
+POST    /patients               controllers.PatientController.addPatient
+PUT     /patients/:id          controllers.PatientController.updatePatient(id: Long)
+DELETE  /patients/:id          controllers.PatientController.deletePatient(id: Long)
+GET     /patients              controllers.PatientController.listPatients
+GET     /patients/search       controllers.PatientController.search(query: String)
+PUT     /patients/:id/notes        controllers.PatientController.updateNotesMedicales(id: Long)
+PUT     /patients/:id/hospitalisations  controllers.PatientController.updateHospitalisations(id: Long)
+PUT     /patients/:id/traitements       controllers.PatientController.updateTraitements(id: Long)
+
+# Gestion des rendez-vous
+POST    /rendezvous                  controllers.RendezVousController.createRendezVous
+PUT     /rendezvous/:id              controllers.RendezVousController.updateRendezVous(id: Long)
+DELETE  /rendezvous/:id              controllers.RendezVousController.deleteRendezVous(id: Long)
+GET     /rendezvous/medecin/:medecinId controllers.RendezVousController.getPlanningByPersonnel(medecinId: Long)
+GET     /rendezvous/patient/:patientId controllers.RendezVousController.getRendezVousByPatient(patientId: Long)
+
+# Gestion des gardes
+POST    /gardes                     controllers.GardeController.addGarde
+GET     /gardes/personnel/:personnelId      controllers.GardeController.getGardesByPersonnel(personnelId: Long)
+GET     /gardes                    controllers.GardeController.listGardes
+DELETE  /gardes/:id                controllers.GardeController.deleteGarde(id: Long)
+
+# Personnel
+POST    /personnel                    controllers.PersonnelController.create
+PUT     /personnel/:id               controllers.PersonnelController.update(id: Long)
+DELETE  /personnel/:id               controllers.PersonnelController.delete(id: Long)
+GET     /personnel                   controllers.PersonnelController.listAll
+GET     /personnel/role/:role        controllers.PersonnelController.searchByRole(role: String)
+
+# Routes pour Chambre
+GET     /chambres                     controllers.ChambreController.getAll
+GET     /chambres/:id                controllers.ChambreController.get(id: Long)
+POST    /chambres                    controllers.ChambreController.create
+PUT     /chambres/:id                controllers.ChambreController.update(id: Long)
+DELETE  /chambres/:id                controllers.ChambreController.delete(id: Long)
+
+# Routes pour Materiel
+GET     /materiels                   controllers.MaterielController.getAll
+GET     /materiels/:id              controllers.MaterielController.get(id: Long)
+POST    /materiels                  controllers.MaterielController.create
+PUT     /materiels/:id              controllers.MaterielController.update(id: Long)
+DELETE  /materiels/:id              controllers.MaterielController.delete(id: Long)
+
+# Routes pour Paiement
+GET     /paiements                   controllers.PaiementController.getAll
+GET     /paiements/:id              controllers.PaiementController.get(id: Long)
+POST    /paiements                  controllers.PaiementController.create
+PUT     /paiements/:id              controllers.PaiementController.update(id: Long)
+DELETE  /paiements/:id              controllers.PaiementController.delete(id: Long)
+
+# Routes pour Assurance
+GET     /assurances                  controllers.AssuranceController.getAll
+GET     /assurances/:id             controllers.AssuranceController.get(id: Long)
+POST    /assurances                 controllers.AssuranceController.create
+PUT     /assurances/:id             controllers.AssuranceController.update(id: Long)
+DELETE  /assurances/:id             controllers.AssuranceController.delete(id: Long)
+
+# Hospitalisation routes
+POST    /hospitalisations         controllers.HospitalisationController.create
+GET     /hospitalisations         controllers.HospitalisationController.list
+PUT     /hospitalisations/:id     controllers.HospitalisationController.update(id: Long)
+DELETE  /hospitalisations/:id     controllers.HospitalisationController.delete(id: Long)
